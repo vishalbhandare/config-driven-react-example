@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { DesktopLayout } from './layouts/DesktopLayout';
+import { MobileLayout } from './layouts/MobileLayout';
+import { useLayoutContext } from './contexts/layout';
+import { ConfigSwitch } from './components/common/CofigSwitch';
 
 function App() {
+  const layout = useLayoutContext()
+  const layoutComponentMap = {
+    'desktop': <DesktopLayout/>,
+    'mobile': <MobileLayout/>
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App flex flex-col h-screen">
+      <ConfigSwitch/>
+      { layoutComponentMap[layout] }
     </div>
   );
 }

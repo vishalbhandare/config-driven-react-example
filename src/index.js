@@ -3,11 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import { LayoutContextProvider } from './contexts/layout';
+import {RoleContextProvider} from './contexts/Role.js'
+import {UiConfigContextProvider} from './contexts/UiConfig.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <LayoutContextProvider>
+        <RoleContextProvider>
+          <UiConfigContextProvider>
+            <App />
+          </UiConfigContextProvider>
+        </RoleContextProvider>
+      </LayoutContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
